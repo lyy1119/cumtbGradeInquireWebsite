@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
+    <title>成绩明细查询</title>
+    <script type="text/javascript">
+        function onSubmit() {
+            // alert("表单提交后执行了 JavaScript 函数!");
+        }
+    </script>
+</head>
+<body>
+    <h1 align="center">成绩明细查询</h1>
+    <div class="main_container">
+        输入教务系统学号、密码查询成绩明细<p>
+        <a href="https://github.com/lyy1119/cumtbGradeInquireWebsite/issues" target="_blank">如有问题请在github项目地址提issue</a>
+        <div class="form">
+            <form method="POST" onsubmit="onSubmit()">
+            <label for="student_id">学号：</label>
+            <input type="text" id="student_id" name="student_id" required><br><br>
+            <label for="password">密码：</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <button type="submit">查询</button>
+            </form>
+        </div>
+        <div class="grade_html">
+            <div class="updatingContainer">
+                <div id="id" class="personal_id"></div>
+                <div id="update_time" class="update_time">
+                </div>
+              </div>
+            <div id="maintable" class="gradeTable">
+                <div class="tableHeaderContainer">
+                    <div class="semesterTitle">学期</div>
+                    <div class="courseNameTitle">课程</div>
+                    <div class="gpTitle">绩点</div>
+                    <div class="gradeTitle">成绩</div>
+                    <div class="detailTitle">成绩明细</div>
+                  </div>
+            </div>
+            <a href="http://exp.lyy19.top/" target="_blank">关于开发者：个人主页</a> |
+            <a href="https://github.com/lyy1119/cumtbGradeInquireWebsite" target="_blank">网站Github开源地址</a> |
+            <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024090415号</a>
+        </div>
+      </div>
+
+    {% if js_execution %}
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,24 @@
+.tableBodyContainer {  display: grid;
+    grid-template-columns: 0.5fr 5.5fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "semesterName infoGrid";
+  }
+  
+  .semesterName {
+    margin: 5%;
+    padding: 2%;
+    grid-area: semesterName;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .infoGrid {
+    display: grid;
+    /* place-items: center; */
+    grid-area: infoGrid;
+  }
+  

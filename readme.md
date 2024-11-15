@@ -8,6 +8,12 @@
 
 依赖的配置在`app.py`的`tokenApiUrl`变量。  
 
+### 构建docker image
+
+```shell
+make
+```
+
 ### 部署
 
 可以直接使用python运行`app.py`运行这个网页。  

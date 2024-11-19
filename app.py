@@ -51,16 +51,11 @@ def index():
         student_id = request.form.get('student_id')
         password = request.form.get('password')
 
-        print(f"学号: {student_id}, 密码: {password}")
-        # print(type(student_id))
-        # print(type(password))
-
         # 使用获得的学号和密码查询成绩并展示
         gradeData , info = score_inquiry(student_id , password)
 
         session['grade_data'] = gradeData
         session['info'] = info
-        # print(session)
 
         # 设置一个 session 标志
         session['form_submitted'] = True

@@ -1,41 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>成绩明细查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script type="text/javascript">
         function onSubmit(event) {
 
         }
     </script>
 </head>
-
 <body>
-    <h1 align="center">成绩明细查询</h1>
-    <div class="main_container">
-        输入教务系统学号、密码查询成绩明细<p>
-            <a href="https://github.com/lyy1119/cumtbGradeInquireWebsite/issues"
-                target="_blank">如有问题请在github项目地址提issue</a>
-        <div class="form">
-            <form method="POST" onsubmit="onSubmit()">
-                <label for="student_id">学号：</label>
-                <input type="text" id="student_id" name="student_id" required><br><br>
-                <label for="password">密码：</label>
-                <input type="password" id="password" name="password" required><br><br>
-                <button type="submit">查询</button>
-            </form>
+<div id="page" class="site">
+    <div class="container">
+        <div class="login">
+            <div class="hero">
+                <h1>成绩明细查询</h1>
+                <p>输入教务系统学号密码查询成绩明细<br>成绩排序为学期先后</p>
+            </div>
+            <div class="main">
+                <form method="POST" onsubmit="onSubmit()">
+                    <p>
+                        <input type="text" id="student_id" name="student_id" required placeholder="学号">
+                    </p>
+                    <p class="password">
+                        <input type="password" id="password" name="password" required placeholder="密码">
+                        <!-- <i class="ri-eye-off-line"></i> -->
+                        <!-- <a href="#">找回密码</a> -->
+                    </p>
+                    <p>
+                        <input type="submit" class="submit" value="查询">
+                    </p>
+                </form>
+                <div class="options">
+                    <div class="separator">
+                        <p>关于网站</p>
+                    </div>
+                    <ul>
+                        <li><a target="_blank" href="https://github.com/lyy1119/cumtbGradeInquireWebsite"><i class="ri-github-fill ri-2x"></i></a></li>
+                        <li><a target="_blank" href="https://exp.lyy19.top/">author</a></li>
+                        <li><a target="_blank" href="https://github.com/lyy1119/cumtbGradeInquireWebsite/issues"><i class="ri-bug-fill ri-2x">?</i></a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-
+</div>
 </body>
 <footer>
-    <a href="http://exp.lyy19.top/" target="_blank">关于开发者：个人主页</a> |
-    <a href="https://github.com/lyy1119/cumtbGradeInquireWebsite" target="_blank">网站Github开源地址</a> |
-    <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024090415号</a>
+    <a href="https://beian.miit.gov.cn/" target="_blank"> | 京ICP备2024090415号 |</a>
 </footer>
-
 </html>

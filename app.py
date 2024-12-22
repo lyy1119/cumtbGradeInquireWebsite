@@ -1,5 +1,4 @@
 import time
-import json
 from flask import Flask, render_template, request, session, jsonify , redirect , url_for
 # import random
 import os
@@ -14,8 +13,8 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 
 inquireUrl="https://jwxt.cumtb.edu.cn/eams-micro-server/api/v1/grade/student/grades"
 
-# tokenApiUrl = "http://cumtb_api:5000/api/token"
-tokenApiUrl = "http://localhost:5000/api/token"
+tokenApiUrl = "http://cumtb_api:5000/api/token"
+# tokenApiUrl = "http://localhost:5000/api/token"
 
 def error_dict(detail):
     text = {"error": [{"courseCode": "0", "courseNameZh": "错误！", "credits": 0, "finalGrade": "0", "gp": 0, "gradeDetail": detail, "lessonCode": "0"}]}

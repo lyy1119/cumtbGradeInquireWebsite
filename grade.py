@@ -1,5 +1,4 @@
 import requests
-import re
 import json
 from sort_semester import sort_dict
 import urllib.parse

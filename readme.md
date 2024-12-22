@@ -3,7 +3,7 @@
 ## TODO
 
 - [ ] 美化页面
-- [ ] 将密码页面和成绩明细页面分离
+- [x] 将密码页面和成绩明细页面分离
 - [ ] 增加公告
 - [ ] 统计访问数
 - [ ] 增加学期选择功能
@@ -32,29 +32,4 @@ make
 
 ### docker-compose.yml
 
-```yml
-services:
-  cumtb_api:
-    image: cumtb_api:latest   # 替换为提供API服务的容器镜像
-    container_name: cumtb_api
-    restart: unless-stopped
-    ports:
-      - 5000:5000 # 如果需要暴露给宿主机
-    networks:
-      - cumtb_network
-
-  cumtb_grade_inquire:
-    image: cumtb_grade_inquire:latest
-    container_name: cumtb_grade_inquire
-    restart: unless-stopped
-    ports:
-      - 8081:80 # <外部端口>:<内部端口>
-    depends_on:
-      - cumtb_api
-    networks:
-      - cumtb_network
-
-networks:
-  cumtb_network:
-    driver: bridge
-```
+见文件

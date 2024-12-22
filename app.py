@@ -28,12 +28,12 @@ def score_inquiry(id , pwd):
     grade = None
     # generate gradeEntry
     try:
-        token = Grade.get_token(tokenApiUrl , id , pwd)
+        dataDict = Grade.get_token(tokenApiUrl , id , pwd)
     except:
         # 密码输入错误导致不能获取
         grade = error_dict("你的密码可能输入错误，或尝试登录一次教务系统，或联系管理员")
     else:
-        header["X-Id-Token"] = token
+        header["X-Id-Token"] = dataDict["token"]
         gradeEntry = Grade(header=header , url=inquireUrl , id=id , pwd=pwd , api=tokenApiUrl)
         if gradeEntry.fetch():
                 # print("tokenRight!")

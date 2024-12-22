@@ -1,5 +1,4 @@
 import requests
-import re
 import json
 from sort_semester import sort_dict
 import urllib.parse
@@ -19,8 +18,7 @@ class Grade:
         url = f"{api}?id={id}&pwd={pwd}"
         response = requests.get(url)
         rawStr = response.text
-        token = re.findall(r'"(.*?)"', rawStr)[0]
-        return token
+        return json.loads(rawStr)
     
     @staticmethod
     def list_diff(bigList , smallList):

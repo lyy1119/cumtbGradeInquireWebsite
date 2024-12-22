@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查询中</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body,
+        html {
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3178c6;
+
+        }
+
+        .item {
+            width: 12px;
+            height: 60px;
+            margin: 0 2px;
+            background-color: #fff;
+            animation: wave 1.2s infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        @keyframes wave {
+
+            0%,
+            40%,
+            100% {
+                transform: scale(0.4);
+            }
+
+            20% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // 发送请求到后端查询成绩
+        fetch('/score_inquiry', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                // 查询完成后跳转到 grade 页面
+                window.location.href = "{{ url_for('grade') }}";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("查询失败，请稍后再试！");
+            });
+    </script>
+    <div class="container">
+        <p align="center" style="color: white;">正在查询成绩，请稍等。</p> <br>
+        <span class="item item1" style="--delay:-1.1s"></span>
+        <span class="item item2" style="--delay:-1.0s"></span>
+        <span class="item item3" style="--delay:-0.9s"></span>
+        <span class="item item4" style="--delay:-0.8s"></span>
+        <span class="item item5" style="--delay:-0.7s"></span>
+    </div>
+</body>
+
+</html>

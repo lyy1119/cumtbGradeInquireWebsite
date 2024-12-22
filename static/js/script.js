@@ -1,4 +1,15 @@
 async function loadJSON() {
+    // let inquireFinish = 0;
+    // while(1)
+    // {
+    //     let state = fetch('/state');
+    //     inquireFinish = state["state"];
+    //     if (inquireFinish == 1)
+    //     {
+    //         break;
+    //     }
+    //     await sleep(500);
+    // }
     try {
         const response = await fetch('/grade_data');
         const jsonData = await response.json();
@@ -9,6 +20,10 @@ async function loadJSON() {
     } catch (error) {
         console.error('Error loading JSON:', error);
     }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function generateTable(jsonData) {

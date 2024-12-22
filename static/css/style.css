@@ -40,5 +40,12 @@
       
       .grade_html {
         flex-grow: 1; /* 使 grade_html 区域的高度可伸缩 */
+        /* margin: 2% 5%; */
       }
-      
+      .back_to_home_page {
+        /* flex-grow: 1; */
+        place-items: center;
+        text-align: center;
+        align-items: center; /* 居中 */
+        margin: 2% 5%;
+      }

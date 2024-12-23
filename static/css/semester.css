@@ -1,0 +1,19 @@
+.semesterLayout {  
+      padding: 3% 0% 0% 5%;
+  }
+  
+  .semester {
+    width: 15rem;
+    height: 2rem;
+    /* grid-area: semester; */
+    font-size: 1.5rem;
+    text-align: center;
+    vertical-align: auto;
+    /* border-bottom: 0.1rem solid; */
+    margin: 2% 20% 0% 0%;
+    padding: 1% 0% 2% 0%;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 5rem;
+    background-color: rgba(255, 255, 255, 0.238);
+  }
+  

@@ -27,19 +27,36 @@ function sleep(ms) {
 }
 
 function generateTable(jsonData) {
-    var table = document.getElementById("maintable");
+    // 找到主体，也就是要插入的位置 id=contentTable
+    var table = document.getElementById("contentTable");
+    // 设置标记，用于改变颜色
     let sign = 1;
-    Object.keys(jsonData).forEach(semesterName => {
+    // 遍历数据，使用key名，即学期名，如2024-2025-1
+    sortStrings(Object.keys(jsonData)).forEach(semesterName => {
         //  创建新表体
         let newTableBody = document.createElement("div");
-        // newTableBody.id = semesterName;
+        // 增加div的class，用于css样式
+        // 一个tableBodyContainer用于展示一个学期
         newTableBody.classList.add("tableBodyContainer");
-        // 绘制表体的第一、二列
+        // 绘制表体的学期、成绩，
         // 学期名
+        // 增加semesterLayout div 内容为空，用于布局
+        let semesterLayout = document.createElement("div");
+        semesterLayout.classList.add("semesterLayout");
+        newTableBody.appendChild(semesterLayout);
+
         let newBodySemesterName = document.createElement("div");
-        newBodySemesterName.classList.add("semesterName");
+        newBodySemesterName.classList.add("semester");
         newBodySemesterName.textContent = semesterName;
-        newTableBody.appendChild(newBodySemesterName);
+        semesterLayout.appendChild(newBodySemesterName);
+        // 将学期信息div放入单个学期的表体
+        // 绘制分割线
+        let betweenCourseHorizonLine = document.createElement("div");
+        betweenCourseHorizonLine.classList.add("betweenCourseHorizonLine");
+        let lineDivInBetweenCourseHorizonLine = document.createElement("div");
+        lineDivInBetweenCourseHorizonLine.classList.add("lineDivInBetweenCourseHorizonLine");
+        betweenCourseHorizonLine.appendChild(lineDivInBetweenCourseHorizonLine);
+        newTableBody.appendChild(betweenCourseHorizonLine);
         // 学期成绩列
         let newBodyInfoGrid = document.createElement("div");
         newBodyInfoGrid.classList.add("infoGrid");
@@ -48,8 +65,8 @@ function generateTable(jsonData) {
             // 绘制单科div框
             let singleCourseDiv = document.createElement("div");
             singleCourseDiv.classList.add("singleCourseContainer");
-            if(sign == 1) {singleCourseDiv.classList.add("coloredSingleCourseContainer")}
-            sign = sign * (-1);
+            // if(sign == 1) {singleCourseDiv.classList.add("coloredSingleCourseContainer")}
+            // sign = sign * (-1);
 
             let newCourseInfo = document.createElement("div");
             newCourseInfo.classList.add("courseInfo");
@@ -93,20 +110,43 @@ function generateTable(jsonData) {
             singleCourseDiv.appendChild(newGp);
             singleCourseDiv.appendChild(newCourseInfo);
             newBodyInfoGrid.appendChild(singleCourseDiv);
-            newTableBody.appendChild(newBodyInfoGrid);
+            
+
+            // 绘制分割线
+            let betweenCourseHorizonLine = document.createElement("div");
+            betweenCourseHorizonLine.classList.add("betweenCourseHorizonLine");
+            let lineDivInBetweenCourseHorizonLine = document.createElement("div");
+            lineDivInBetweenCourseHorizonLine.classList.add("lineDivInBetweenCourseHorizonLine");
+            betweenCourseHorizonLine.appendChild(lineDivInBetweenCourseHorizonLine);
+            newBodyInfoGrid.appendChild(betweenCourseHorizonLine);
         });
-        
+        newTableBody.appendChild(newBodyInfoGrid);
         // 将整个表体添加到主表中去
         table.appendChild(newTableBody);
 
     });
 }
 
+function sortStrings(arr) {
+    return arr.sort((a, b) => {
+        // 按 - 分割字符串
+        const [year1A, year2A, termA] = a.split('-').map(Number);
+        const [year1B, year2B, termB] = b.split('-').map(Number);
+
+        // 比较年份部分
+        if (year1A !== year1B) return year1B - year1A; // 按第一个年份从大到小排序
+        if (year2A !== year2B) return year2B - year2A; // 按第二个年份从大到小排序
+
+        // 如果年份相同，按学期从大到小排序
+        return termB - termA;
+    });
+}
+
 function update_info(jsonData) {
     let id = document.getElementById("id")
     let time = document.getElementById("update_time")
-    id.innerHTML = "学号：" + (jsonData["id"]);
-    time.innerHTML = "获取时间:" + (jsonData["update_time"]);
+    id.innerHTML = (jsonData["id"]);
+    time.innerHTML = (jsonData["update_time"]);
 }
 // if(js_execution){
 //     loadJSON();

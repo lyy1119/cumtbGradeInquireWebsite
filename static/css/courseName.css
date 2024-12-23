@@ -20,4 +20,6 @@
     justify-self: end;
   }
 
-  .courseName { grid-area: courseName; }
+  .courseName { 
+    grid-area: courseName; 
+  }

@@ -2,50 +2,131 @@
 @import "courseName.css";
 @import "tableBody.css";
 @import "singleCourseInfo.css";
-    .gradeTable{
-        box-shadow: 0px 0px 0px 2px rgba(74,144,226,1),
-8px 8px 0px 0px rgba(74,144,226,1);
-        margin: 2% 5%;
-    }
-    .gradeTable > * {
-        padding: 2%;
-    }
+@import "horizonLine.css";
+@import "semester.css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&display=swap');
 
-    .updatingContainer {  display: grid;
-        place-items: center;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
-        gap: 0px 0px;
-        grid-auto-flow: row;
-        grid-template-areas:
-          "personal_id update_time";
-          margin: 2% 5%;
-      }
-      
-      .personal_id { grid-area: personal_id; }
-      
-      .update_time { grid-area: update_time; }
-      
-      .main_container {
-        display: flex;
-        flex-direction: column; /* 上下排列 */
-        align-items: center; /* 居中 */
-        height: 75vh; /*使容器占满整个视口*/
-      }
-      
-      .form {
-        flex-grow: 1; /* 使 form 区域的高度可伸缩 */
-        margin: 2%;
-      }
-      
-      .grade_html {
-        flex-grow: 1; /* 使 grade_html 区域的高度可伸缩 */
-        /* margin: 2% 5%; */
-      }
-      .back_to_home_page {
-        /* flex-grow: 1; */
-        place-items: center;
-        text-align: center;
-        align-items: center; /* 居中 */
-        margin: 2% 5%;
-      }
+/*用中文替换原先英文字体*/
+:root {
+    --primary-color: #d1d8f7;
+    --white-color: #ffffff;
+
+    --light-text-color: #9398b3;
+    --light-bg-color: #f2f4ff;
+    --dark-color: #333333;
+
+    --background-color: #fcfcff;
+}
+
+*,
+::before::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--dark-color);
+    background-color: var(--background-color);
+    user-select: none;
+    -webkit-user-drag: none;
+    height: 90vh;
+    overflow: scroll;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.hero {
+    flex: 1 0 66.6666%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* gap: 50px; */
+    /* padding: 70px 0; */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 70vw;
+    height: 70vh;
+    background: linear-gradient(to right, var(--primary-color), #c5edffa3, #e6d8d8);
+    z-index: -1;
+    filter: blur(70px);
+}
+
+.hero a {
+    font-weight: 500;
+    color: var(--primary-color);
+    transition: color .3s;
+}
+
+.hero a:hover,
+form .password a:hover {
+    color: var(--dark-color);
+    text-decoration: underline;
+}
+
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 700;
+    line-height: normal;
+    color: black;
+}
+
+.gradeTable {
+    margin: 2% 5%;
+}
+
+.content {
+    width: 90vw;
+    height: 70vh;
+    overflow: scroll;
+}
+
+.content::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.updatingContainer {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "personal_id update_time";
+    margin: 1%;
+    padding: 0;
+}
+
+.personal_id {
+    grid-area: personal_id;
+}
+
+.update_time {
+    grid-area: update_time;
+}

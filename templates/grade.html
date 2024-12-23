@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -7,32 +8,45 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
+    <style>
+        .back_to_home_page {
+            text-align: left;
+            margin: 2rem 0 0 5vw;
+            text-decoration: none;
+            color: inherit;
+            -webkit-tap-highlight-color: transparent;
+            /* color: black; */
+            /* text-decoration: none; */
+        }
+    </style>
 </head>
+
 <body>
-    <div class="grade_html">
+    <div class="hero">
         <div class="back_to_home_page">
-            <a href="{{ url_for('index') }}">点此返回查询界面</a>
+            <a style="color: black;" href="{{ url_for('index') }}"><i class="ri-home-2-fill ri-2x"></i>点此返回查询界面</a>
         </div>
         <div class="updatingContainer">
             <div id="id" class="personal_id"></div>
-            <div id="update_time" class="update_time">
-            </div>
-          </div>
-        <div id="maintable" class="gradeTable">
+            <div id="update_time" class="update_time"></div>
+        </div>
+        <div class="gradeTable">
             <div class="tableHeaderContainer">
-                <div class="semesterTitle">学期</div>
+                <!-- <div class="semesterTitle">学期</div> -->
                 <div class="courseNameTitle">课程</div>
                 <div class="gpTitle">绩点</div>
                 <div class="gradeTitle">成绩</div>
                 <div class="detailTitle">成绩明细</div>
-              </div>
+            </div>
+            <div class="horizonLine095">
+                <div class="hr095"></div>
+            </div>
+            <div id="contentTable" class="content"></div>
         </div>
-        <a href="http://exp.lyy19.top/" target="_blank">关于开发者：个人主页</a> |
-        <a href="https://github.com/lyy1119/cumtbGradeInquireWebsite" target="_blank">网站Github开源地址</a> |
-        <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024090415号</a>
     </div>
 </body>
+
 </html>

@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script type="text/javascript">
         function onSubmit(event) {
+            const inquireButton = document.getElementById("inquireButton");
+            inquireButton.disabled=true;
+            inquireButton.value="查询中...";
 
         }
     </script>
@@ -20,7 +23,7 @@
         <div class="login">
             <div class="hero">
                 <h1>成绩明细查询</h1>
-                <p>输入教务系统学号密码查询成绩明细<br>成绩排序为学期先后</p>
+                <p>学号密码同教务<br>无法点击查询请刷新</p>
             </div>
             <div class="main">
                 <form method="POST" onsubmit="onSubmit()">
@@ -33,7 +36,7 @@
                         <!-- <a href="#">找回密码</a> -->
                     </p>
                     <p>
-                        <input type="submit" class="submit" value="查询">
+                        <input type="submit" class="submit" id="inquireButton" value="查询">
                     </p>
                 </form>
                 <div class="options">

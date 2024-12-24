@@ -7,7 +7,7 @@ from datetime import timedelta
 
 app = Flask(__name__ , template_folder='./templates')
 app.secret_key = os.urandom(24)  # 设置 session 密钥
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=1) 
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=10)
 
 
 

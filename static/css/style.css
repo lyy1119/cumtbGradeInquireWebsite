@@ -139,9 +139,9 @@ h1 {
 
 /* 滚动条滑块 */
 .content::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #ffffff, #cde2ff);
+    background: linear-gradient(45deg, #d7d8ff, #cde2ff);
     border-radius: 6px;
-    border: 0px solid #000000;
+    border: 0px solid #ffffff00;
     /* 保留滑块周围的空隙 */
 }
 

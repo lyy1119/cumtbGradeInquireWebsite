@@ -1,23 +1,9 @@
 async function loadJSON() {
     try {
-        // 检查缓存中是否有数据
-        let jsonData = localStorage.getItem("gradeData");
-        let jsonData2 = localStorage.getItem("infoData");
-        // 如果缓存中没有数据，则从服务器请求
-        if (!jsonData || !jsonData2) {
-            const response = await fetch('/grade_data');
-            jsonData = await response.json();
-            const response2 = await fetch('/info');
-            jsonData2 = await response2.json();
-
-            // 将加载的数据存入缓存
-            localStorage.setItem("gradeData", JSON.stringify(jsonData));
-            localStorage.setItem("infoData", JSON.stringify(jsonData2));
-        } else {
-            // 如果缓存中有数据，则直接使用
-            jsonData = JSON.parse(jsonData);
-            jsonData2 = JSON.parse(jsonData2);
-        }
+        const response = await fetch('/grade_data');
+        jsonData = await response.json();
+        const response2 = await fetch('/info');
+        jsonData2 = await response2.json();
         generateTable(jsonData);
         update_info(jsonData2);
     } catch (error) {

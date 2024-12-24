@@ -1,0 +1,73 @@
+.navigate {
+    display: grid;
+    grid-template-columns: 10vw auto auto auto 10vw;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". homeButton . semesterDropDown .";
+    box-shadow: 0 5px 20px rgb(0, 0, 0, 0.05);
+    height: 3.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.homeButton .semesterDropDown {
+    margin-top: 1rem;
+}
+
+
+.homeButton {
+    grid-area: homeButton;
+    justify-self: left;
+    justify-content: left;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.semesterDropDown {
+    grid-area: semesterDropDown;
+    justify-self: right;
+    backdrop-filter: blur(10);
+    border-radius: 1rem;
+    box-shadow: 0 5px 20px rgb(0, 0, 0, 0.05);
+    height: 2.5rem;
+    width: 12rem;
+    justify-content: center;
+    background-color: white;
+    padding-left: 0.5rem;
+    align-items: center;
+    margin-top: 0.8rem;
+    backdrop-filter: blur(90);
+}
+
+.dropDownBox {
+    vertical-align: auto;
+    margin-bottom: 5%;
+}
+
+select {
+    /* appearance: none; */
+    padding: 8px;
+    border: 0px solid;
+    border-radius: 1rem;
+    background-color: #ffffff00;
+    color: #333;
+    font-size: 16px;
+    width: 8rem;
+    /* justify-self: flex-end; */
+}
+
+/* 美化select的下拉箭头 */
+/* select:after {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+} */
+
+/* 美化选项内容 */
+option {
+    padding: 5px;
+    height: auto;
+    /* background-color: #ffffff00;
+    color: #333; */
+    border-radius: 1rem;
+}

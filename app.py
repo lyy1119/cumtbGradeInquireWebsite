@@ -1,6 +1,6 @@
 import time
 from flask import Flask, render_template, request, session, jsonify , redirect , url_for
-# import random
+import sys
 import os
 from grade import Grade
 from datetime import timedelta
@@ -14,7 +14,6 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=1)
 inquireUrl="https://jwxt.cumtb.edu.cn/eams-micro-server/api/v1/grade/student/grades"
 
 tokenApiUrl = "http://cumtb_api:5000/api/token"
-# tokenApiUrl = "http://localhost:5000/api/token"
 
 def error_dict(detail):
     text = {"error": [{"courseCode": "0", "courseNameZh": "错误！", "credits": 0, "finalGrade": "0", "gp": 0, "gradeDetail": detail, "lessonCode": "0"}]}
@@ -49,12 +48,6 @@ def index():
         password = request.form.get('password')
         session['student_id'] = student_id
         session['password'] = password
-        # # 使用获得的学号和密码查询成绩并展示
-        # gradeData , info = score_inquiry(student_id , password)
-
-        # session['grade_data'] = gradeData
-        # session['info'] = info
-        # session['state'] = 1
 
         # # 设置一个 session 标志
         session['form_submitted'] = True
@@ -119,4 +112,10 @@ def state():
     return jsonify(session['state'])
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        mode = sys.argv[1]  # 读取第一个参数
+        if mode == "debug":
+            tokenApiUrl = "http://localhost:5000/api/token"
+            print("Running in debug mode.")
+    print(f"use api url as {tokenApiUrl}")
     app.run(host="0.0.0.0", port=80 , threaded=True)

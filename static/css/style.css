@@ -5,6 +5,7 @@
 @import "horizonLine.css";
 @import "semester.css";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&display=swap');
+@import "navigate.css";
 
 /*用中文替换原先英文字体*/
 :root {
@@ -34,7 +35,7 @@ body {
     background-color: var(--background-color);
     user-select: none;
     -webkit-user-drag: none;
-    height: 90vh;
+    height: 98vh;
     overflow: scroll;
 }
 
@@ -96,18 +97,15 @@ h1 {
 }
 
 .gradeTable {
-    margin: 2% 5%;
+    margin: 0% 5%;
 }
 
 .content {
     width: 90vw;
     height: 70vh;
-    overflow: scroll;
-}
-
-.content::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
+    overflow-x: hidden;
+    /* 隐藏水平滚动条 */
+    overflow-y: auto;
 }
 
 .updatingContainer {
@@ -129,4 +127,37 @@ h1 {
 
 .update_time {
     grid-area: update_time;
+}
+
+/* 整体滚动条宽度 */
+.content::-webkit-scrollbar {
+    width: 12px;
+    /* 垂直滚动条宽度 */
+    height: 12px;
+    /* 水平滚动条高度 */
+}
+
+/* 滚动条滑块 */
+.content::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ffffff, #cde2ff);
+    border-radius: 6px;
+    border: 0px solid #000000;
+    /* 保留滑块周围的空隙 */
+}
+
+/* 滚动条轨道 */
+.content::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 6px;
+}
+
+/* 鼠标悬停在滑块上时 */
+.content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #c3c4ff, #dfe9ff);
+}
+
+/* 滚动条的按钮 */
+.content::-webkit-scrollbar-button {
+    display: none;
+    /* 隐藏按钮 */
 }

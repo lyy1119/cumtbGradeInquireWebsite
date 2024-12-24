@@ -11,23 +11,23 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <style>
-        .back_to_home_page {
-            text-align: left;
-            margin: 0.5rem 0 0 5vw;
-            text-decoration: none;
-            color: inherit;
-            -webkit-tap-highlight-color: transparent;
-            /* color: black; */
-            /* text-decoration: none; */
-        }
-    </style>
 </head>
 
 <body>
     <div class="hero">
-        <div class="back_to_home_page">
-            <a style="color: black;" href="{{ url_for('index') }}"><i class="ri-home-2-fill ri-2x"></i>点此返回查询界面</a>
+        <div class="navigate">
+            <div class="homeButton">
+                <a style="color: black;" href="{{ url_for('index') }}"><i class="ri-home-2-fill ri-2x"></i>返回</a>
+            </div>
+            <div class="semesterDropDown">
+                学期：
+                <select id="semesterSelect" class="dropDownBox">
+                    <option value="all">
+                        全部
+                    </option>
+                </select>
+            </div>
+
         </div>
         <div class="updatingContainer">
             <div id="id" class="personal_id"></div>
@@ -35,7 +35,6 @@
         </div>
         <div class="gradeTable">
             <div class="tableHeaderContainer">
-                <!-- <div class="semesterTitle">学期</div> -->
                 <div class="courseNameTitle">课程</div>
                 <div class="gpTitle">绩点</div>
                 <div class="gradeTitle">成绩</div>

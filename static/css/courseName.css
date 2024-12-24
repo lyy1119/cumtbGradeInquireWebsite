@@ -1,25 +1,32 @@
 .courseContainer {  display: grid;
     place-items: center;
     grid-template-columns: 0.5fr 1fr 6fr 1fr 0.5fr;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-rows: auto auto auto;
     gap: 0px 0px;
     grid-auto-flow: row;
+    /* height: ; */
     grid-template-areas:
       ". . courseId courseId ."
       ". . courseName . ."
       ". . credit credit .";
+    flex-direction: column;
+    min-height: fit-content;
   }
 
   .courseId {
+    font-size: 0.8rem;
     grid-area: courseId;
     justify-self: end;
 }
 
   .credit {
+    font-size: 0.8rem;
     grid-area: credit;
     justify-self: end;
   }
 
   .courseName { 
     grid-area: courseName; 
+    min-height: 2rem;
+    height: fit-content;
   }

@@ -1,20 +1,23 @@
 async function loadJSON() {
-    // let inquireFinish = 0;
-    // while(1)
-    // {
-    //     let state = fetch('/state');
-    //     inquireFinish = state["state"];
-    //     if (inquireFinish == 1)
-    //     {
-    //         break;
-    //     }
-    //     await sleep(500);
-    // }
     try {
-        const response = await fetch('/grade_data');
-        const jsonData = await response.json();
-        const response2 = await fetch('/info');
-        const jsonData2 = await response2.json();
+        // 检查缓存中是否有数据
+        let jsonData = localStorage.getItem("gradeData");
+        let jsonData2 = localStorage.getItem("infoData");
+        // 如果缓存中没有数据，则从服务器请求
+        if (!jsonData || !jsonData2) {
+            const response = await fetch('/grade_data');
+            jsonData = await response.json();
+            const response2 = await fetch('/info');
+            jsonData2 = await response2.json();
+
+            // 将加载的数据存入缓存
+            localStorage.setItem("gradeData", JSON.stringify(jsonData));
+            localStorage.setItem("infoData", JSON.stringify(jsonData2));
+        } else {
+            // 如果缓存中有数据，则直接使用
+            jsonData = JSON.parse(jsonData);
+            jsonData2 = JSON.parse(jsonData2);
+        }
         generateTable(jsonData);
         update_info(jsonData2);
     } catch (error) {
@@ -22,17 +25,34 @@ async function loadJSON() {
     }
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+// 默认选项
+var option = "all";
 
 function generateTable(jsonData) {
     // 找到主体，也就是要插入的位置 id=contentTable
     var table = document.getElementById("contentTable");
+    table.innerHTML = "";
     // 设置标记，用于改变颜色
     let sign = 1;
+    // 写入select选项
+    let selectLable = document.getElementById("semesterSelect");
+    selectLable.innerHTML = "<option value='all'>全部</option>"; // 清空旧选项
+    Object.keys(jsonData).forEach(semesterName => {
+        let newOption = document.createElement("option");
+        newOption.value = semesterName;
+        newOption.text = semesterName;
+        selectLable.appendChild(newOption);
+    });
+    selectLable.value = option;
     // 遍历数据，使用key名，即学期名，如2024-2025-1
-    sortStrings(Object.keys(jsonData)).forEach(semesterName => {
+    let showArray = [];
+    if (option === "all") {
+        showArray = sortStrings(Object.keys(jsonData));
+    }
+    else {
+        showArray = [option];
+    }
+    showArray.forEach(semesterName => {
         //  创建新表体
         let newTableBody = document.createElement("div");
         // 增加div的class，用于css样式
@@ -102,7 +122,7 @@ function generateTable(jsonData) {
             // 绘制 detail
             let newDetail = document.createElement("div");
             newDetail.classList.add("detail");
-            newDetail.textContent = courseJson["gradeDetail"];
+            newDetail.innerHTML = courseJson["gradeDetail"].replace(/;/g, "<br>");
 
 
             singleCourseDiv.appendChild(newDetail);
@@ -110,7 +130,7 @@ function generateTable(jsonData) {
             singleCourseDiv.appendChild(newGp);
             singleCourseDiv.appendChild(newCourseInfo);
             newBodyInfoGrid.appendChild(singleCourseDiv);
-            
+
 
             // 绘制分割线
             let betweenCourseHorizonLine = document.createElement("div");
@@ -125,6 +145,13 @@ function generateTable(jsonData) {
         table.appendChild(newTableBody);
 
     });
+}
+
+function update_info(jsonData) {
+    let id = document.getElementById("id")
+    let time = document.getElementById("update_time")
+    id.innerHTML = (jsonData["id"]);
+    time.innerHTML = (jsonData["update_time"]);
 }
 
 function sortStrings(arr) {
@@ -142,13 +169,14 @@ function sortStrings(arr) {
     });
 }
 
-function update_info(jsonData) {
-    let id = document.getElementById("id")
-    let time = document.getElementById("update_time")
-    id.innerHTML = (jsonData["id"]);
-    time.innerHTML = (jsonData["update_time"]);
-}
-// if(js_execution){
-//     loadJSON();
-// }
-loadJSON();
+window.onload = function () {
+    // 确保 DOM 加载完成后再执行
+    loadJSON();
+
+    const selectMenu = document.getElementById("semesterSelect");
+    selectMenu.addEventListener('change', () => {
+        const selectedValue = selectMenu.value;
+        option = selectedValue;
+        loadJSON();
+    });
+};

@@ -1,8 +1,0 @@
-.tableBodyContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.infoGrid {
-  grid-area: infoGrid;
-}
